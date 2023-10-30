@@ -28,7 +28,7 @@ def knight_movement(knight_position):
     k_row, k_col = knight_position
     knight_go = [(k_row-2, k_col-1), (k_row-1, k_col-2), (k_row+1, k_col-2), (k_row+2, k_col-1), (k_row-2, k_col+1), (k_row-1, k_col+2), (k_row+1, k_col+2), (k_row+2, k_col+1)]
     for dr, dc in knight_go:
-        if (dr, dc) in board_positions:
+        if (dr, dc) in board_positions and (dr, dc) not in occupied_positions:
             res.append((dr, dc))
     return res
 knight_position = (0,6)
@@ -109,4 +109,27 @@ def queen_movement(queen_position):
 # print(queen_movement((3, 4)))
 
 def king_movement(king_position):
-    pass
+    res = []
+    r, c = king_position
+    king_go = [(r-1, c-1), (r, c-1), (r+1, c-1), (r-1, c), (r+1, c), (r-1, c+1), (r, c+1), (r+1, c+1)]
+    for dr, dc in king_go:
+        if (dr, dc) in board_positions and (dr, dc) not in occupied_positions:
+            res.append((dr, dc))
+    return res
+# print(king_movement)
+
+def pawn_movement(pawn_position, pawn_play):
+    res = []
+    r, c = pawn_position
+    if pawn_play == 1:
+        pawn_go = [(r-1, c-1), (r-1, c), (r-1, c+1)]
+        for dr, dc in pawn_go:
+            if (dr, dc) in board_positions and (dr, dc) not in occupied_positions:
+                res.append((dr, dc))
+    elif pawn_play == 2:
+        pawn_go[(r+1, c-1), (r+1, c), (r+1, c+1)]
+        for dr, dc in pawn_go:
+            if (dr, dc) in board_positions and (dr, dc) not in occupied_positions:
+                res.append((dr, dc))
+    return res
+# print(pawn_movement)
